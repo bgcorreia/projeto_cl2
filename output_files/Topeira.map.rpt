@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Topeira
-Thu Nov 23 22:05:36 2017
+Fri Nov 24 01:56:33 2017
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -16,10 +16,11 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
   8. Registers Removed During Synthesis
   9. General Register Statistics
  10. Inverted Register Statistics
- 11. Post-Synthesis Netlist Statistics for Top Partition
- 12. Elapsed Time Per Partition
- 13. Analysis & Synthesis Messages
- 14. Analysis & Synthesis Suppressed Messages
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Post-Synthesis Netlist Statistics for Top Partition
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
+ 15. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -46,15 +47,15 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Nov 23 22:05:36 2017       ;
+; Analysis & Synthesis Status        ; Successful - Fri Nov 24 01:56:33 2017       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; Topeira                                     ;
 ; Top-level Entity Name              ; Topeira                                     ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 44                                          ;
-;     Total combinational functions  ; 37                                          ;
-;     Dedicated logic registers      ; 35                                          ;
-; Total registers                    ; 35                                          ;
+; Total logic elements               ; 256                                         ;
+;     Total combinational functions  ; 255                                         ;
+;     Dedicated logic registers      ; 134                                         ;
+; Total registers                    ; 134                                         ;
 ; Total pins                         ; 27                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -180,20 +181,20 @@ agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 44             ;
+; Estimated Total logic elements              ; 256            ;
 ;                                             ;                ;
-; Total combinational functions               ; 37             ;
+; Total combinational functions               ; 255            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 9              ;
-;     -- 3 input functions                    ; 1              ;
-;     -- <=2 input functions                  ; 27             ;
+;     -- 4 input functions                    ; 78             ;
+;     -- 3 input functions                    ; 21             ;
+;     -- <=2 input functions                  ; 156            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 12             ;
-;     -- arithmetic mode                      ; 25             ;
+;     -- normal mode                          ; 142            ;
+;     -- arithmetic mode                      ; 113            ;
 ;                                             ;                ;
-; Total registers                             ; 35             ;
-;     -- Dedicated logic registers            ; 35             ;
+; Total registers                             ; 134            ;
+;     -- Dedicated logic registers            ; 134            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 27             ;
@@ -201,9 +202,9 @@ agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 35             ;
-; Total fan-out                               ; 202            ;
-; Average fan-out                             ; 1.60           ;
+; Maximum fan-out                             ; 134            ;
+; Total fan-out                               ; 1079           ;
+; Average fan-out                             ; 2.44           ;
 +---------------------------------------------+----------------+
 
 
@@ -212,7 +213,7 @@ agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; |Topeira                   ; 37 (37)             ; 35 (35)                   ; 0           ; 0            ; 0       ; 0         ; 27   ; 0            ; |Topeira            ; Topeira     ; work         ;
+; |Topeira                   ; 255 (255)           ; 134 (134)                 ; 0           ; 0            ; 0       ; 0         ; 27   ; 0            ; |Topeira            ; Topeira     ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -222,13 +223,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+----------------------------------------+
 ; Register name                          ; Reason for Removal                     ;
 +----------------------------------------+----------------------------------------+
-; hex0[1..3,5]                           ; Merged with hex0[0]                    ;
-; hex1[0..3,5]                           ; Merged with hex0[0]                    ;
-; hex1[4]                                ; Merged with hex0[4]                    ;
-; hex1[6]                                ; Merged with hex0[6]                    ;
-; hex0[6]                                ; Stuck at VCC due to stuck port data_in ;
-; hex0[0,4]                              ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 14 ;                                        ;
+; hex1[1]                                ; Stuck at GND due to stuck port data_in ;
+; ledg[3]                                ; Merged with ledg[1]                    ;
+; ledg[2]                                ; Merged with casa_da_toupeira[0]        ;
+; casa_da_toupeira[3]                    ; Merged with casa_da_toupeira[1]        ;
+; ledg[4..7]                             ; Merged with casa_da_toupeira[1]        ;
+; hex1[3,4]                              ; Merged with hex1[0]                    ;
+; teste[1..9,11..31]                     ; Merged with teste[10]                  ;
+; teste[10]                              ; Stuck at GND due to stuck port data_in ;
+; doidera[1..31]                         ; Lost fanout                            ;
+; ledg[1]                                ; Stuck at GND due to stuck port data_in ;
+; casa_da_toupeira[1]                    ; Stuck at VCC due to stuck port data_in ;
+; Total Number of Removed Registers = 74 ;                                        ;
 +----------------------------------------+----------------------------------------+
 
 
@@ -237,12 +243,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 35    ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 134   ;
+; Number of registers using Synchronous Clear  ; 27    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 8     ;
+; Number of registers using Clock Enable       ; 66    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -252,9 +258,25 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; ledg[0]                                ; 2       ;
-; Total number of inverted registers = 1 ;         ;
+; ledg[0]                                ; 1       ;
+; doidera[0]                             ; 5       ;
+; topvivas[1]                            ; 2       ;
+; topvivas[2]                            ; 2       ;
+; topvivas[3]                            ; 2       ;
+; topvivas[4]                            ; 2       ;
+; Total number of inverted registers = 6 ;         ;
 +----------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 28 bits   ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |Topeira|topvivas[16]      ;
+; 3:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |Topeira|contador[14]      ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |Topeira|topvivas[1]       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +-----------------------------------------------------+
@@ -263,20 +285,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 27                          ;
-; cycloneiii_ff         ; 35                          ;
-;     ENA               ; 8                           ;
-;     plain             ; 27                          ;
-; cycloneiii_lcell_comb ; 40                          ;
-;     arith             ; 25                          ;
-;         2 data inputs ; 24                          ;
+; cycloneiii_ff         ; 134                         ;
+;     ENA               ; 66                          ;
+;     SCLR              ; 27                          ;
+;     plain             ; 41                          ;
+; cycloneiii_lcell_comb ; 258                         ;
+;     arith             ; 113                         ;
+;         2 data inputs ; 112                         ;
 ;         3 data inputs ; 1                           ;
-;     normal            ; 15                          ;
+;     normal            ; 145                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 4                           ;
-;         4 data inputs ; 9                           ;
+;         1 data inputs ; 12                          ;
+;         2 data inputs ; 33                          ;
+;         3 data inputs ; 20                          ;
+;         4 data inputs ; 78                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.50                        ;
-; Average LUT depth     ; 2.43                        ;
+; Max LUT depth         ; 10.40                       ;
+; Average LUT depth     ; 6.34                        ;
 +-----------------------+-----------------------------+
 
 
@@ -295,50 +320,51 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Thu Nov 23 22:05:17 2017
+    Info: Processing started: Fri Nov 24 01:56:12 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Topeira -c Topeira
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Warning (10259): Verilog HDL error at Topeira.v(30): constant value overflow File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 30
 Info (12021): Found 1 design units, including 1 entities, in source file Topeira.v
     Info (12023): Found entity 1: Topeira File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 1
 Warning (12019): Can't analyze file -- file Topeira_Main.v is missing
 Info (12127): Elaborating entity "Topeira" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at Topeira.v(9): object "count" assigned a value but never read File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 9
-Warning (10230): Verilog HDL assignment warning at Topeira.v(24): truncated value with size 32 to match size of target (27) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 24
-Warning (10762): Verilog HDL Case Statement warning at Topeira.v(34): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 34
-Warning (10762): Verilog HDL Case Statement warning at Topeira.v(47): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 47
+Warning (10036): Verilog HDL or VHDL warning at Topeira.v(10): object "count1" assigned a value but never read File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 10
+Warning (10036): Verilog HDL or VHDL warning at Topeira.v(11): object "count2" assigned a value but never read File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 11
+Warning (10762): Verilog HDL Case Statement warning at Topeira.v(37): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 37
+Warning (10270): Verilog HDL Case Statement warning at Topeira.v(37): incomplete case statement has no default case item File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 37
+Warning (10855): Verilog HDL warning at Topeira.v(35): initial value for variable casa_da_toupeira should be constant File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 35
+Warning (10855): Verilog HDL warning at Topeira.v(35): initial value for variable ledg should be constant File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 35
+Warning (10230): Verilog HDL assignment warning at Topeira.v(67): truncated value with size 32 to match size of target (27) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 67
+Warning (10199): Verilog HDL Case Statement warning at Topeira.v(90): case item expression never matches the case expression File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 90
+Warning (10199): Verilog HDL Case Statement warning at Topeira.v(98): case item expression never matches the case expression File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 98
+Warning (10230): Verilog HDL assignment warning at Topeira.v(107): truncated value with size 32 to match size of target (27) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 107
+Warning (10199): Verilog HDL Case Statement warning at Topeira.v(139): case item expression never matches the case expression File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 139
+Warning (10199): Verilog HDL Case Statement warning at Topeira.v(147): case item expression never matches the case expression File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 147
+Warning (10762): Verilog HDL Case Statement warning at Topeira.v(156): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 156
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[0]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
-    Warning (13410): Pin "HEX0[1]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
-    Warning (13410): Pin "HEX0[2]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
-    Warning (13410): Pin "HEX0[3]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
-    Warning (13410): Pin "HEX0[4]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
-    Warning (13410): Pin "HEX0[5]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
-    Warning (13410): Pin "HEX0[6]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
-    Warning (13410): Pin "HEX1[0]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
+    Warning (13410): Pin "LEDG[1]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
+    Warning (13410): Pin "LEDG[3]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
+    Warning (13410): Pin "LEDG[4]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
+    Warning (13410): Pin "LEDG[5]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
+    Warning (13410): Pin "LEDG[6]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
+    Warning (13410): Pin "LEDG[7]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
     Warning (13410): Pin "HEX1[1]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
-    Warning (13410): Pin "HEX1[2]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
-    Warning (13410): Pin "HEX1[3]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
-    Warning (13410): Pin "HEX1[4]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
-    Warning (13410): Pin "HEX1[5]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
-    Warning (13410): Pin "HEX1[6]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 31 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file /home/brunoc/PROJETO_CL2/output_files/Topeira.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 3 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[1]" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 3
-    Warning (15610): No output dependent on input pin "KEY[2]" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 3
-    Warning (15610): No output dependent on input pin "KEY[3]" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 3
-Info (21057): Implemented 71 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 283 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 22 output pins
-    Info (21061): Implemented 44 logic cells
+    Info (21061): Implemented 256 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 957 megabytes
-    Info: Processing ended: Thu Nov 23 22:05:36 2017
-    Info: Elapsed time: 00:00:19
-    Info: Total CPU time (on all processors): 00:00:46
+    Info: Peak virtual memory: 958 megabytes
+    Info: Processing ended: Fri Nov 24 01:56:33 2017
+    Info: Elapsed time: 00:00:21
+    Info: Total CPU time (on all processors): 00:00:49
 
 
 +------------------------------------------+
