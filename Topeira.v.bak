@@ -1,0 +1,23 @@
+module Topeira_Main(
+	input CLOCK_50,
+	input KEY[3:0],
+	output LEDG[7:0],
+	output HEX0[7:0],
+	output HEX1[7:0],
+);
+
+integer count1 = 0;
+integer count2 = 0;
+
+reg ledg[7:0] = 8'b00000001; 
+
+assign LEDG = ledg;
+
+always @(posedge CLOCK_50){
+
+	if(~KEY[0]){
+		ledg = ledg<<1;
+	}
+
+}
+
