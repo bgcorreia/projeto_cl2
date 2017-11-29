@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Topeira
-Fri Nov 24 01:56:33 2017
+Wed Nov 29 17:57:23 2017
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -13,14 +13,26 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. General Register Statistics
- 10. Inverted Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Post-Synthesis Netlist Statistics for Top Partition
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
- 15. Analysis & Synthesis Suppressed Messages
+  8. State Machine - |Topeira|LCD_TEST:u1|mLCD_ST
+  9. State Machine - |Topeira|LCD_TEST:u1|LCD_Controller:u0|ST
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: Top-level Entity: |Topeira
+ 17. Parameter Settings for User Entity Instance: LCD_TEST:u1
+ 18. Parameter Settings for User Entity Instance: LCD_TEST:u1|LCD_Controller:u0
+ 19. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
+ 20. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1
+ 21. Parameter Settings for Inferred Entity Instance: lpm_divide:Div2
+ 22. Parameter Settings for Inferred Entity Instance: lpm_divide:Div1
+ 23. Parameter Settings for Inferred Entity Instance: lpm_divide:Div0
+ 24. Post-Synthesis Netlist Statistics for Top Partition
+ 25. Elapsed Time Per Partition
+ 26. Analysis & Synthesis Messages
+ 27. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -47,16 +59,16 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Nov 24 01:56:33 2017       ;
+; Analysis & Synthesis Status        ; Successful - Wed Nov 29 17:57:23 2017       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; Topeira                                     ;
 ; Top-level Entity Name              ; Topeira                                     ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 256                                         ;
-;     Total combinational functions  ; 255                                         ;
-;     Dedicated logic registers      ; 134                                         ;
-; Total registers                    ; 134                                         ;
-; Total pins                         ; 27                                          ;
+; Total logic elements               ; 2,640                                       ;
+;     Total combinational functions  ; 2,639                                       ;
+;     Dedicated logic registers      ; 267                                         ;
+; Total registers                    ; 267                                         ;
+; Total pins                         ; 82                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -167,75 +179,197 @@ agreement for further details.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                     ;
-+----------------------------------+-----------------+------------------------+------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path       ; Library ;
-+----------------------------------+-----------------+------------------------+------------------------------------+---------+
-; Topeira.v                        ; yes             ; User Verilog HDL File  ; /home/brunoc/PROJETO_CL2/Topeira.v ;         ;
-+----------------------------------+-----------------+------------------------+------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                             ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                         ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------+---------+
+; Topeira.v                        ; yes             ; User Verilog HDL File        ; /home/brunoc/PROJETO_CL2/Topeira.v                                                   ;         ;
+; LCD_Controller.v                 ; yes             ; User Verilog HDL File        ; /home/brunoc/PROJETO_CL2/LCD_Controller.v                                            ;         ;
+; Reset_Delay.v                    ; yes             ; User Verilog HDL File        ; /home/brunoc/PROJETO_CL2/Reset_Delay.v                                               ;         ;
+; LCD_TEST.v                       ; yes             ; User Verilog HDL File        ; /home/brunoc/PROJETO_CL2/LCD_TEST.v                                                  ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; /home/brunoc/intelFPGA_lite/17.0/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; /home/brunoc/intelFPGA_lite/17.0/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; /home/brunoc/intelFPGA_lite/17.0/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; aglobal170.inc                   ; yes             ; Megafunction                 ; /home/brunoc/intelFPGA_lite/17.0/quartus/libraries/megafunctions/aglobal170.inc      ;         ;
+; db/lpm_divide_9qo.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_divide_9qo.tdf                                       ;         ;
+; db/abs_divider_1dg.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/abs_divider_1dg.tdf                                      ;         ;
+; db/alt_u_div_0af.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/alt_u_div_0af.tdf                                        ;         ;
+; db/add_sub_7pc.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/add_sub_7pc.tdf                                          ;         ;
+; db/add_sub_8pc.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/add_sub_8pc.tdf                                          ;         ;
+; db/lpm_abs_f0a.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_abs_f0a.tdf                                          ;         ;
+; db/lpm_abs_i0a.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_abs_i0a.tdf                                          ;         ;
+; db/lpm_divide_soo.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_divide_soo.tdf                                       ;         ;
+; db/abs_divider_kbg.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/abs_divider_kbg.tdf                                      ;         ;
+; db/alt_u_div_67f.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/alt_u_div_67f.tdf                                        ;         ;
+; db/lpm_abs_5v9.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_abs_5v9.tdf                                          ;         ;
+; db/lpm_divide_cvo.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_divide_cvo.tdf                                       ;         ;
+; db/abs_divider_7ag.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/abs_divider_7ag.tdf                                      ;         ;
+; db/alt_u_div_c4f.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/alt_u_div_c4f.tdf                                        ;         ;
+; db/lpm_abs_2v9.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_abs_2v9.tdf                                          ;         ;
+; db/lpm_divide_p0p.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_divide_p0p.tdf                                       ;         ;
+; db/lpm_divide_62p.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/brunoc/PROJETO_CL2/db/lpm_divide_62p.tdf                                       ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                  ;
-+---------------------------------------------+----------------+
-; Resource                                    ; Usage          ;
-+---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 256            ;
-;                                             ;                ;
-; Total combinational functions               ; 255            ;
-; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 78             ;
-;     -- 3 input functions                    ; 21             ;
-;     -- <=2 input functions                  ; 156            ;
-;                                             ;                ;
-; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 142            ;
-;     -- arithmetic mode                      ; 113            ;
-;                                             ;                ;
-; Total registers                             ; 134            ;
-;     -- Dedicated logic registers            ; 134            ;
-;     -- I/O registers                        ; 0              ;
-;                                             ;                ;
-; I/O pins                                    ; 27             ;
-;                                             ;                ;
-; Embedded Multiplier 9-bit elements          ; 0              ;
-;                                             ;                ;
-; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 134            ;
-; Total fan-out                               ; 1079           ;
-; Average fan-out                             ; 2.44           ;
-+---------------------------------------------+----------------+
++----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary              ;
++---------------------------------------------+------------+
+; Resource                                    ; Usage      ;
++---------------------------------------------+------------+
+; Estimated Total logic elements              ; 2,640      ;
+;                                             ;            ;
+; Total combinational functions               ; 2639       ;
+; Logic element usage by number of LUT inputs ;            ;
+;     -- 4 input functions                    ; 924        ;
+;     -- 3 input functions                    ; 603        ;
+;     -- <=2 input functions                  ; 1112       ;
+;                                             ;            ;
+; Logic elements by mode                      ;            ;
+;     -- normal mode                          ; 1872       ;
+;     -- arithmetic mode                      ; 767        ;
+;                                             ;            ;
+; Total registers                             ; 267        ;
+;     -- Dedicated logic registers            ; 267        ;
+;     -- I/O registers                        ; 0          ;
+;                                             ;            ;
+; I/O pins                                    ; 82         ;
+;                                             ;            ;
+; Embedded Multiplier 9-bit elements          ; 0          ;
+;                                             ;            ;
+; Maximum fan-out node                        ; pontos[31] ;
+; Maximum fan-out                             ; 141        ;
+; Total fan-out                               ; 8582       ;
+; Average fan-out                             ; 2.79       ;
++---------------------------------------------+------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                      ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; |Topeira                   ; 255 (255)           ; 134 (134)                 ; 0           ; 0            ; 0       ; 0         ; 27   ; 0            ; |Topeira            ; Topeira     ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                       ;
++---------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node            ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                   ; Entity Name     ; Library Name ;
++---------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |Topeira                              ; 2639 (542)          ; 267 (195)                 ; 0           ; 0            ; 0       ; 0         ; 82   ; 0            ; |Topeira                                                                                              ; Topeira         ; work         ;
+;    |LCD_TEST:u1|                      ; 122 (101)           ; 51 (38)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|LCD_TEST:u1                                                                                  ; LCD_TEST        ; work         ;
+;       |LCD_Controller:u0|             ; 21 (21)             ; 13 (13)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|LCD_TEST:u1|LCD_Controller:u0                                                                ; LCD_Controller  ; work         ;
+;    |Reset_Delay:r0|                   ; 27 (27)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|Reset_Delay:r0                                                                               ; Reset_Delay     ; work         ;
+;    |lpm_divide:Div0|                  ; 788 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div0                                                                              ; lpm_divide      ; work         ;
+;       |lpm_divide_62p:auto_generated| ; 788 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div0|lpm_divide_62p:auto_generated                                                ; lpm_divide_62p  ; work         ;
+;          |abs_divider_1dg:divider|    ; 788 (29)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div0|lpm_divide_62p:auto_generated|abs_divider_1dg:divider                        ; abs_divider_1dg ; work         ;
+;             |alt_u_div_0af:divider|   ; 744 (744)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div0|lpm_divide_62p:auto_generated|abs_divider_1dg:divider|alt_u_div_0af:divider  ; alt_u_div_0af   ; work         ;
+;             |lpm_abs_i0a:my_abs_num|  ; 15 (15)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div0|lpm_divide_62p:auto_generated|abs_divider_1dg:divider|lpm_abs_i0a:my_abs_num ; lpm_abs_i0a     ; work         ;
+;    |lpm_divide:Div1|                  ; 111 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div1                                                                              ; lpm_divide      ; work         ;
+;       |lpm_divide_p0p:auto_generated| ; 111 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div1|lpm_divide_p0p:auto_generated                                                ; lpm_divide_p0p  ; work         ;
+;          |abs_divider_kbg:divider|    ; 111 (11)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div1|lpm_divide_p0p:auto_generated|abs_divider_kbg:divider                        ; abs_divider_kbg ; work         ;
+;             |alt_u_div_67f:divider|   ; 100 (100)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div1|lpm_divide_p0p:auto_generated|abs_divider_kbg:divider|alt_u_div_67f:divider  ; alt_u_div_67f   ; work         ;
+;    |lpm_divide:Div2|                  ; 84 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div2                                                                              ; lpm_divide      ; work         ;
+;       |lpm_divide_cvo:auto_generated| ; 84 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div2|lpm_divide_cvo:auto_generated                                                ; lpm_divide_cvo  ; work         ;
+;          |abs_divider_7ag:divider|    ; 84 (11)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div2|lpm_divide_cvo:auto_generated|abs_divider_7ag:divider                        ; abs_divider_7ag ; work         ;
+;             |alt_u_div_c4f:divider|   ; 65 (65)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div2|lpm_divide_cvo:auto_generated|abs_divider_7ag:divider|alt_u_div_c4f:divider  ; alt_u_div_c4f   ; work         ;
+;             |lpm_abs_5v9:my_abs_num|  ; 8 (8)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Div2|lpm_divide_cvo:auto_generated|abs_divider_7ag:divider|lpm_abs_5v9:my_abs_num ; lpm_abs_5v9     ; work         ;
+;    |lpm_divide:Mod0|                  ; 823 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod0                                                                              ; lpm_divide      ; work         ;
+;       |lpm_divide_9qo:auto_generated| ; 823 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod0|lpm_divide_9qo:auto_generated                                                ; lpm_divide_9qo  ; work         ;
+;          |abs_divider_1dg:divider|    ; 823 (20)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod0|lpm_divide_9qo:auto_generated|abs_divider_1dg:divider                        ; abs_divider_1dg ; work         ;
+;             |alt_u_div_0af:divider|   ; 773 (773)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod0|lpm_divide_9qo:auto_generated|abs_divider_1dg:divider|alt_u_div_0af:divider  ; alt_u_div_0af   ; work         ;
+;             |lpm_abs_i0a:my_abs_num|  ; 30 (30)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod0|lpm_divide_9qo:auto_generated|abs_divider_1dg:divider|lpm_abs_i0a:my_abs_num ; lpm_abs_i0a     ; work         ;
+;    |lpm_divide:Mod1|                  ; 142 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod1                                                                              ; lpm_divide      ; work         ;
+;       |lpm_divide_soo:auto_generated| ; 142 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod1|lpm_divide_soo:auto_generated                                                ; lpm_divide_soo  ; work         ;
+;          |abs_divider_kbg:divider|    ; 142 (15)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod1|lpm_divide_soo:auto_generated|abs_divider_kbg:divider                        ; abs_divider_kbg ; work         ;
+;             |alt_u_div_67f:divider|   ; 117 (117)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod1|lpm_divide_soo:auto_generated|abs_divider_kbg:divider|alt_u_div_67f:divider  ; alt_u_div_67f   ; work         ;
+;             |lpm_abs_f0a:my_abs_num|  ; 10 (10)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Topeira|lpm_divide:Mod1|lpm_divide_soo:auto_generated|abs_divider_kbg:divider|lpm_abs_f0a:my_abs_num ; lpm_abs_f0a     ; work         ;
++---------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; hex1[1]                                ; Stuck at GND due to stuck port data_in ;
-; ledg[3]                                ; Merged with ledg[1]                    ;
-; ledg[2]                                ; Merged with casa_da_toupeira[0]        ;
-; casa_da_toupeira[3]                    ; Merged with casa_da_toupeira[1]        ;
-; ledg[4..7]                             ; Merged with casa_da_toupeira[1]        ;
-; hex1[3,4]                              ; Merged with hex1[0]                    ;
-; teste[1..9,11..31]                     ; Merged with teste[10]                  ;
-; teste[10]                              ; Stuck at GND due to stuck port data_in ;
-; doidera[1..31]                         ; Lost fanout                            ;
-; ledg[1]                                ; Stuck at GND due to stuck port data_in ;
-; casa_da_toupeira[1]                    ; Stuck at VCC due to stuck port data_in ;
-; Total Number of Removed Registers = 74 ;                                        ;
-+----------------------------------------+----------------------------------------+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------+
+; State Machine - |Topeira|LCD_TEST:u1|mLCD_ST                                       ;
++----------------+----------------+----------------+----------------+----------------+
+; Name           ; mLCD_ST.000011 ; mLCD_ST.000010 ; mLCD_ST.000001 ; mLCD_ST.000000 ;
++----------------+----------------+----------------+----------------+----------------+
+; mLCD_ST.000000 ; 0              ; 0              ; 0              ; 0              ;
+; mLCD_ST.000001 ; 0              ; 0              ; 1              ; 1              ;
+; mLCD_ST.000010 ; 0              ; 1              ; 0              ; 1              ;
+; mLCD_ST.000011 ; 1              ; 0              ; 0              ; 1              ;
++----------------+----------------+----------------+----------------+----------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------+
+; State Machine - |Topeira|LCD_TEST:u1|LCD_Controller:u0|ST ;
++-------+-------+-------+-------+---------------------------+
+; Name  ; ST.11 ; ST.10 ; ST.01 ; ST.00                     ;
++-------+-------+-------+-------+---------------------------+
+; ST.00 ; 0     ; 0     ; 0     ; 0                         ;
+; ST.01 ; 0     ; 0     ; 1     ; 1                         ;
+; ST.10 ; 0     ; 1     ; 0     ; 1                         ;
+; ST.11 ; 1     ; 0     ; 0     ; 1                         ;
++-------+-------+-------+-------+---------------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                   ;
++----------------------------------------------------+-------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal     ; Free of Timing Hazards ;
++----------------------------------------------------+-------------------------+------------------------+
+; LCD_TEST:u1|LUT_DATA[8]                            ; LCD_TEST:u1|LUT_DATA[8] ; yes                    ;
+; LCD_TEST:u1|LUT_DATA[0]                            ; LCD_TEST:u1|LUT_DATA[0] ; yes                    ;
+; LCD_TEST:u1|LUT_DATA[1]                            ; LCD_TEST:u1|LUT_DATA[0] ; yes                    ;
+; LCD_TEST:u1|LUT_DATA[2]                            ; LCD_TEST:u1|LUT_DATA[8] ; yes                    ;
+; LCD_TEST:u1|LUT_DATA[3]                            ; LCD_TEST:u1|LUT_DATA[8] ; yes                    ;
+; LCD_TEST:u1|LUT_DATA[4]                            ; LCD_TEST:u1|LUT_DATA[8] ; yes                    ;
+; LCD_TEST:u1|LUT_DATA[5]                            ; LCD_TEST:u1|LUT_DATA[8] ; yes                    ;
+; LCD_TEST:u1|LUT_DATA[6]                            ; LCD_TEST:u1|LUT_DATA[8] ; yes                    ;
+; LCD_TEST:u1|LUT_DATA[7]                            ; LCD_TEST:u1|LUT_DATA[8] ; yes                    ;
+; Number of user-specified and inferred latches = 9  ;                         ;                        ;
++----------------------------------------------------+-------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++----------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                               ;
++-----------------------------------------+----------------------------------------+
+; Register name                           ; Reason for Removal                     ;
++-----------------------------------------+----------------------------------------+
+; hex7[1]                                 ; Stuck at GND due to stuck port data_in ;
+; hex5[1]                                 ; Stuck at GND due to stuck port data_in ;
+; valor[0,3,7..31]                        ; Stuck at GND due to stuck port data_in ;
+; nivel[3..31]                            ; Stuck at GND due to stuck port data_in ;
+; tempo[2..31]                            ; Stuck at GND due to stuck port data_in ;
+; ledg[1]                                 ; Merged with ledg[0]                    ;
+; hex5[3,4]                               ; Merged with hex5[0]                    ;
+; hex7[3,4]                               ; Merged with hex7[0]                    ;
+; valor[1]                                ; Merged with tempo[1]                   ;
+; nivel[2]                                ; Merged with estado_atual[2]            ;
+; nivel[0]                                ; Merged with estado_atual[0]            ;
+; tempo[0]                                ; Merged with estado_atual[0]            ;
+; valor[5]                                ; Merged with estado_atual[0]            ;
+; nivel[1]                                ; Merged with estado_atual[1]            ;
+; valor[2,6]                              ; Merged with estado_atual[1]            ;
+; ledg[3]                                 ; Merged with ledg[2]                    ;
+; ledg[5]                                 ; Merged with ledg[4]                    ;
+; ledg[7]                                 ; Merged with ledg[6]                    ;
+; pontos[0]                               ; Stuck at GND due to stuck port data_in ;
+; LCD_TEST:u1|mLCD_ST~8                   ; Lost fanout                            ;
+; LCD_TEST:u1|mLCD_ST~9                   ; Lost fanout                            ;
+; LCD_TEST:u1|mLCD_ST~10                  ; Lost fanout                            ;
+; LCD_TEST:u1|mLCD_ST~11                  ; Lost fanout                            ;
+; LCD_TEST:u1|mLCD_ST~12                  ; Lost fanout                            ;
+; LCD_TEST:u1|mLCD_ST~13                  ; Lost fanout                            ;
+; LCD_TEST:u1|LCD_Controller:u0|ST~8      ; Lost fanout                            ;
+; LCD_TEST:u1|LCD_Controller:u0|ST~9      ; Lost fanout                            ;
+; Total Number of Removed Registers = 113 ;                                        ;
++-----------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                        ;
++---------------+---------------------------+----------------------------------------+
+; Register name ; Reason for Removal        ; Registers Removed due to This Register ;
++---------------+---------------------------+----------------------------------------+
+; valor[0]      ; Stuck at GND              ; pontos[0]                              ;
+;               ; due to stuck port data_in ;                                        ;
++---------------+---------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -243,12 +377,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 134   ;
-; Number of registers using Synchronous Clear  ; 27    ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Total registers                              ; 267   ;
+; Number of registers using Synchronous Clear  ; 81    ;
+; Number of registers using Synchronous Load   ; 4     ;
+; Number of registers using Asynchronous Clear ; 51    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 66    ;
+; Number of registers using Clock Enable       ; 171   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -258,25 +392,185 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; ledg[0]                                ; 1       ;
-; doidera[0]                             ; 5       ;
-; topvivas[1]                            ; 2       ;
-; topvivas[2]                            ; 2       ;
-; topvivas[3]                            ; 2       ;
-; topvivas[4]                            ; 2       ;
-; Total number of inverted registers = 6 ;         ;
+; topvivas[1]                            ; 15      ;
+; topvivas[3]                            ; 19      ;
+; estado_atual[0]                        ; 18      ;
+; tempo[1]                               ; 5       ;
+; valor[4]                               ; 4       ;
+; Total number of inverted registers = 5 ;         ;
 +----------------------------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 28 bits   ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |Topeira|topvivas[16]      ;
-; 3:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |Topeira|contador[14]      ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |Topeira|topvivas[1]       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |Topeira|topvivas[0]                         ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |Topeira|LCD_TEST:u1|LCD_Controller:u0|oDone ;
+; 3:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |Topeira|topvivas[13]                        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |Topeira|topacertos[10]                      ;
+; 4:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |Topeira|contador[11]                        ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 62 LEs               ; 0 LEs                  ; Yes        ; |Topeira|pontos[14]                          ;
+; 17:1               ; 4 bits    ; 44 LEs        ; 12 LEs               ; 32 LEs                 ; Yes        ; |Topeira|casa_da_toupeira[1]                 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Topeira|num_botao[1]                        ;
+; 22:1               ; 4 bits    ; 56 LEs        ; 24 LEs               ; 32 LEs                 ; Yes        ; |Topeira|ledg[0]                             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |Topeira|topvivas[3]                         ;
+; 17:1               ; 4 bits    ; 44 LEs        ; 12 LEs               ; 32 LEs                 ; No         ; |Topeira|casa_da_toupeira                    ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |Topeira|LCD_TEST:u1|mLCD_ST                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |Topeira ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; nivel1         ; 001   ; Unsigned Binary                                ;
+; nivel2         ; 010   ; Unsigned Binary                                ;
+; nivel3         ; 011   ; Unsigned Binary                                ;
+; nivel4         ; 100   ; Unsigned Binary                                ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: LCD_TEST:u1 ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; LCD_INTIAL     ; 0     ; Signed Integer                  ;
+; LCD_LINE1      ; 5     ; Signed Integer                  ;
+; LCD_CH_LINE    ; 21    ; Signed Integer                  ;
+; LCD_LINE2      ; 22    ; Signed Integer                  ;
+; LUT_SIZE       ; 38    ; Signed Integer                  ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: LCD_TEST:u1|LCD_Controller:u0 ;
++----------------+-------+---------------------------------------------------+
+; Parameter Name ; Value ; Type                                              ;
++----------------+-------+---------------------------------------------------+
+; CLK_Divide     ; 16    ; Signed Integer                                    ;
++----------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                ;
+; LPM_WIDTHD             ; 11             ; Untyped                ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_9qo ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 11             ; Untyped                ;
+; LPM_WIDTHD             ; 8              ; Untyped                ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_soo ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Div2 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                ;
+; LPM_WIDTHD             ; 5              ; Untyped                ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_cvo ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Div1 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 11             ; Untyped                ;
+; LPM_WIDTHD             ; 8              ; Untyped                ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_p0p ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Div0 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                ;
+; LPM_WIDTHD             ; 11             ; Untyped                ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_62p ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +-----------------------------------------------------+
@@ -284,24 +578,31 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 27                          ;
-; cycloneiii_ff         ; 134                         ;
-;     ENA               ; 66                          ;
+; boundary_port         ; 82                          ;
+; cycloneiii_ff         ; 267                         ;
+;     CLR               ; 6                           ;
+;     ENA               ; 86                          ;
+;     ENA CLR           ; 27                          ;
+;     ENA CLR SCLR      ; 18                          ;
+;     ENA SCLR          ; 36                          ;
+;     ENA SLD           ; 4                           ;
 ;     SCLR              ; 27                          ;
-;     plain             ; 41                          ;
-; cycloneiii_lcell_comb ; 258                         ;
-;     arith             ; 113                         ;
-;         2 data inputs ; 112                         ;
-;         3 data inputs ; 1                           ;
-;     normal            ; 145                         ;
-;         0 data inputs ; 2                           ;
-;         1 data inputs ; 12                          ;
-;         2 data inputs ; 33                          ;
-;         3 data inputs ; 20                          ;
-;         4 data inputs ; 78                          ;
+;     plain             ; 63                          ;
+; cycloneiii_io_obuf    ; 8                           ;
+; cycloneiii_lcell_comb ; 2647                        ;
+;     arith             ; 767                         ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 270                         ;
+;         3 data inputs ; 494                         ;
+;     normal            ; 1880                        ;
+;         0 data inputs ; 66                          ;
+;         1 data inputs ; 22                          ;
+;         2 data inputs ; 759                         ;
+;         3 data inputs ; 109                         ;
+;         4 data inputs ; 924                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 10.40                       ;
-; Average LUT depth     ; 6.34                        ;
+; Max LUT depth         ; 121.00                      ;
+; Average LUT depth     ; 74.67                       ;
 +-----------------------+-----------------------------+
 
 
@@ -310,7 +611,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:10     ;
 +----------------+--------------+
 
 
@@ -320,51 +621,194 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Fri Nov 24 01:56:12 2017
+    Info: Processing started: Wed Nov 29 17:56:55 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Topeira -c Topeira
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Warning (10259): Verilog HDL error at Topeira.v(30): constant value overflow File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 30
 Info (12021): Found 1 design units, including 1 entities, in source file Topeira.v
     Info (12023): Found entity 1: Topeira File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 1
 Warning (12019): Can't analyze file -- file Topeira_Main.v is missing
+Info (12021): Found 1 design units, including 1 entities, in source file LCD_Controller.v
+    Info (12023): Found entity 1: LCD_Controller File: /home/brunoc/PROJETO_CL2/LCD_Controller.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file Reset_Delay.v
+    Info (12023): Found entity 1: Reset_Delay File: /home/brunoc/PROJETO_CL2/Reset_Delay.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file LCD_TEST.v
+    Info (12023): Found entity 1: LCD_TEST File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 1
 Info (12127): Elaborating entity "Topeira" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at Topeira.v(9): object "count" assigned a value but never read File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 9
-Warning (10036): Verilog HDL or VHDL warning at Topeira.v(10): object "count1" assigned a value but never read File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 10
-Warning (10036): Verilog HDL or VHDL warning at Topeira.v(11): object "count2" assigned a value but never read File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 11
-Warning (10762): Verilog HDL Case Statement warning at Topeira.v(37): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 37
-Warning (10270): Verilog HDL Case Statement warning at Topeira.v(37): incomplete case statement has no default case item File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 37
-Warning (10855): Verilog HDL warning at Topeira.v(35): initial value for variable casa_da_toupeira should be constant File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 35
-Warning (10855): Verilog HDL warning at Topeira.v(35): initial value for variable ledg should be constant File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 35
-Warning (10230): Verilog HDL assignment warning at Topeira.v(67): truncated value with size 32 to match size of target (27) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 67
-Warning (10199): Verilog HDL Case Statement warning at Topeira.v(90): case item expression never matches the case expression File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 90
-Warning (10199): Verilog HDL Case Statement warning at Topeira.v(98): case item expression never matches the case expression File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 98
-Warning (10230): Verilog HDL assignment warning at Topeira.v(107): truncated value with size 32 to match size of target (27) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 107
-Warning (10199): Verilog HDL Case Statement warning at Topeira.v(139): case item expression never matches the case expression File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 139
-Warning (10199): Verilog HDL Case Statement warning at Topeira.v(147): case item expression never matches the case expression File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 147
-Warning (10762): Verilog HDL Case Statement warning at Topeira.v(156): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 156
+Warning (10270): Verilog HDL Case Statement warning at Topeira.v(90): incomplete case statement has no default case item File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 90
+Warning (10855): Verilog HDL warning at Topeira.v(86): initial value for variable casa_da_toupeira should be constant File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 86
+Warning (10855): Verilog HDL warning at Topeira.v(86): initial value for variable ledg should be constant File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 86
+Warning (10646): Verilog HDL Event Control warning at Topeira.v(116): posedge or negedge of vector "clock" depends solely on its least-significant bit File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 116
+Warning (10762): Verilog HDL Case Statement warning at Topeira.v(124): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 124
+Warning (10230): Verilog HDL assignment warning at Topeira.v(166): truncated value with size 32 to match size of target (27) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 166
+Warning (10230): Verilog HDL assignment warning at Topeira.v(198): truncated value with size 32 to match size of target (4) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 198
+Warning (10230): Verilog HDL assignment warning at Topeira.v(252): truncated value with size 32 to match size of target (4) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 252
+Warning (10230): Verilog HDL assignment warning at Topeira.v(309): truncated value with size 8 to match size of target (7) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 309
+Warning (10762): Verilog HDL Case Statement warning at Topeira.v(297): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 297
+Warning (10230): Verilog HDL assignment warning at Topeira.v(324): truncated value with size 8 to match size of target (7) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 324
+Warning (10230): Verilog HDL assignment warning at Topeira.v(339): truncated value with size 8 to match size of target (7) File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 339
+Warning (10762): Verilog HDL Case Statement warning at Topeira.v(366): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 366
+Warning (10762): Verilog HDL Case Statement warning at Topeira.v(478): can't check case statement for completeness because the case expression has too many possible states File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 478
+Info (12128): Elaborating entity "Reset_Delay" for hierarchy "Reset_Delay:r0" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 71
+Info (12128): Elaborating entity "LCD_TEST" for hierarchy "LCD_TEST:u1" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 84
+Warning (10230): Verilog HDL assignment warning at LCD_TEST.v(61): truncated value with size 32 to match size of target (18) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 61
+Warning (10230): Verilog HDL assignment warning at LCD_TEST.v(69): truncated value with size 32 to match size of target (6) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 69
+Warning (10270): Verilog HDL Case Statement warning at LCD_TEST.v(96): incomplete case statement has no default case item File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 96
+Warning (10270): Verilog HDL Case Statement warning at LCD_TEST.v(147): incomplete case statement has no default case item File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 147
+Warning (10270): Verilog HDL Case Statement warning at LCD_TEST.v(198): incomplete case statement has no default case item File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 198
+Warning (10270): Verilog HDL Case Statement warning at LCD_TEST.v(248): incomplete case statement has no default case item File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 248
+Warning (10240): Verilog HDL Always Construct warning at LCD_TEST.v(95): inferring latch(es) for variable "LUT_DATA", which holds its previous value in one or more paths through the always construct File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[0]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[1]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[2]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[3]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[4]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[5]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[6]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[7]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (10041): Inferred latch for "LUT_DATA[8]" at LCD_TEST.v(95) File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+Info (12128): Elaborating entity "LCD_Controller" for hierarchy "LCD_TEST:u1|LCD_Controller:u0" File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 311
+Info (278001): Inferred 5 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod1" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div2" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div1" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 312
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 297
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+    Info (12134): Parameter "LPM_WIDTHN" = "32"
+    Info (12134): Parameter "LPM_WIDTHD" = "11"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_9qo.tdf
+    Info (12023): Found entity 1: lpm_divide_9qo File: /home/brunoc/PROJETO_CL2/db/lpm_divide_9qo.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_1dg.tdf
+    Info (12023): Found entity 1: abs_divider_1dg File: /home/brunoc/PROJETO_CL2/db/abs_divider_1dg.tdf Line: 29
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_0af.tdf
+    Info (12023): Found entity 1: alt_u_div_0af File: /home/brunoc/PROJETO_CL2/db/alt_u_div_0af.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_7pc.tdf
+    Info (12023): Found entity 1: add_sub_7pc File: /home/brunoc/PROJETO_CL2/db/add_sub_7pc.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_8pc.tdf
+    Info (12023): Found entity 1: add_sub_8pc File: /home/brunoc/PROJETO_CL2/db/add_sub_8pc.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_f0a.tdf
+    Info (12023): Found entity 1: lpm_abs_f0a File: /home/brunoc/PROJETO_CL2/db/lpm_abs_f0a.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_i0a.tdf
+    Info (12023): Found entity 1: lpm_abs_i0a File: /home/brunoc/PROJETO_CL2/db/lpm_abs_i0a.tdf Line: 25
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod1" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+Info (12133): Instantiated megafunction "lpm_divide:Mod1" with the following parameter: File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+    Info (12134): Parameter "LPM_WIDTHN" = "11"
+    Info (12134): Parameter "LPM_WIDTHD" = "8"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_soo.tdf
+    Info (12023): Found entity 1: lpm_divide_soo File: /home/brunoc/PROJETO_CL2/db/lpm_divide_soo.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_kbg.tdf
+    Info (12023): Found entity 1: abs_divider_kbg File: /home/brunoc/PROJETO_CL2/db/abs_divider_kbg.tdf Line: 29
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_67f.tdf
+    Info (12023): Found entity 1: alt_u_div_67f File: /home/brunoc/PROJETO_CL2/db/alt_u_div_67f.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_5v9.tdf
+    Info (12023): Found entity 1: lpm_abs_5v9 File: /home/brunoc/PROJETO_CL2/db/lpm_abs_5v9.tdf Line: 25
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div2" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+Info (12133): Instantiated megafunction "lpm_divide:Div2" with the following parameter: File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 327
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "5"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_cvo.tdf
+    Info (12023): Found entity 1: lpm_divide_cvo File: /home/brunoc/PROJETO_CL2/db/lpm_divide_cvo.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_7ag.tdf
+    Info (12023): Found entity 1: abs_divider_7ag File: /home/brunoc/PROJETO_CL2/db/abs_divider_7ag.tdf Line: 29
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_c4f.tdf
+    Info (12023): Found entity 1: alt_u_div_c4f File: /home/brunoc/PROJETO_CL2/db/alt_u_div_c4f.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_2v9.tdf
+    Info (12023): Found entity 1: lpm_abs_2v9 File: /home/brunoc/PROJETO_CL2/db/lpm_abs_2v9.tdf Line: 25
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div1" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 312
+Info (12133): Instantiated megafunction "lpm_divide:Div1" with the following parameter: File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 312
+    Info (12134): Parameter "LPM_WIDTHN" = "11"
+    Info (12134): Parameter "LPM_WIDTHD" = "8"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_p0p.tdf
+    Info (12023): Found entity 1: lpm_divide_p0p File: /home/brunoc/PROJETO_CL2/db/lpm_divide_p0p.tdf Line: 25
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 297
+Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 297
+    Info (12134): Parameter "LPM_WIDTHN" = "32"
+    Info (12134): Parameter "LPM_WIDTHD" = "11"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_62p.tdf
+    Info (12023): Found entity 1: lpm_divide_62p File: /home/brunoc/PROJETO_CL2/db/lpm_divide_62p.tdf Line: 25
+Info (13014): Ignored 89 buffer(s)
+    Info (13016): Ignored 89 CARRY_SUM buffer(s)
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "LCD_DATA[0]" and its non-tri-state driver. File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13035): Inserted always-enabled tri-state buffer between "LCD_DATA[1]" and its non-tri-state driver. File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13035): Inserted always-enabled tri-state buffer between "LCD_DATA[2]" and its non-tri-state driver. File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13035): Inserted always-enabled tri-state buffer between "LCD_DATA[3]" and its non-tri-state driver. File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13035): Inserted always-enabled tri-state buffer between "LCD_DATA[4]" and its non-tri-state driver. File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13035): Inserted always-enabled tri-state buffer between "LCD_DATA[5]" and its non-tri-state driver. File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13035): Inserted always-enabled tri-state buffer between "LCD_DATA[6]" and its non-tri-state driver. File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13035): Inserted always-enabled tri-state buffer between "LCD_DATA[7]" and its non-tri-state driver. File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[8] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[3] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[0] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[4] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[1] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[5] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[2] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[5] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[3] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[5] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[4] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[1] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[5] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[5] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[6] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[5] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13012): Latch LCD_TEST:u1|LUT_DATA[7] has unsafe behavior File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 95
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal LCD_TEST:u1|LUT_INDEX[3] File: /home/brunoc/PROJETO_CL2/LCD_TEST.v Line: 43
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "LCD_DATA[0]~synth" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13010): Node "LCD_DATA[1]~synth" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13010): Node "LCD_DATA[2]~synth" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13010): Node "LCD_DATA[3]~synth" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13010): Node "LCD_DATA[4]~synth" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13010): Node "LCD_DATA[5]~synth" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13010): Node "LCD_DATA[6]~synth" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
+    Warning (13010): Node "LCD_DATA[7]~synth" File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 19
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDG[1]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
-    Warning (13410): Pin "LEDG[3]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
-    Warning (13410): Pin "LEDG[4]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
-    Warning (13410): Pin "LEDG[5]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
-    Warning (13410): Pin "LEDG[6]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
-    Warning (13410): Pin "LEDG[7]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
-    Warning (13410): Pin "HEX1[1]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
+    Warning (13410): Pin "HEX0[0]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
+    Warning (13410): Pin "HEX0[1]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
+    Warning (13410): Pin "HEX0[2]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
+    Warning (13410): Pin "HEX0[3]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
+    Warning (13410): Pin "HEX0[4]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
+    Warning (13410): Pin "HEX0[5]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
+    Warning (13410): Pin "HEX0[6]" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 10
+    Warning (13410): Pin "HEX7[1]" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 12
+    Warning (13410): Pin "LCD_ON" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 13
+    Warning (13410): Pin "LCD_BLON" is stuck at VCC File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 14
+    Warning (13410): Pin "LCD_RW" is stuck at GND File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 15
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 31 registers lost all their fanouts during netlist optimizations.
+Info (17049): 8 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file /home/brunoc/PROJETO_CL2/output_files/Topeira.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 283 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2737 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
-    Info (21059): Implemented 22 output pins
-    Info (21061): Implemented 256 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 958 megabytes
-    Info: Processing ended: Fri Nov 24 01:56:33 2017
-    Info: Elapsed time: 00:00:21
-    Info: Total CPU time (on all processors): 00:00:49
+    Info (21059): Implemented 69 output pins
+    Info (21060): Implemented 8 bidirectional pins
+    Info (21061): Implemented 2655 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 72 warnings
+    Info: Peak virtual memory: 997 megabytes
+    Info: Processing ended: Wed Nov 29 17:57:24 2017
+    Info: Elapsed time: 00:00:29
+    Info: Total CPU time (on all processors): 00:00:51
 
 
 +------------------------------------------+

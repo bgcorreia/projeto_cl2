@@ -2,40 +2,136 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1200mV 85C Model Setup 'clock[0]'
+Slack : -6.288
+TNS   : -809.512
+
 Type  : Slow 1200mV 85C Model Setup 'CLOCK_50'
-Slack : -6.672
-TNS   : -811.521
+Slack : -5.257
+TNS   : -378.355
+
+Type  : Slow 1200mV 85C Model Setup 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : -3.973
+TNS   : -29.480
 
 Type  : Slow 1200mV 85C Model Hold 'CLOCK_50'
-Slack : 0.386
+Slack : 0.261
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clock[0]'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : 0.515
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'CLOCK_50'
+Slack : -2.211
+TNS   : -102.522
+
+Type  : Slow 1200mV 85C Model Removal 'CLOCK_50'
+Slack : 1.545
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -3.000
-TNS   : -175.190
+TNS   : -166.195
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clock[0]'
+Slack : -1.285
+TNS   : -179.900
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : 0.426
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'clock[0]'
+Slack : -5.718
+TNS   : -732.579
 
 Type  : Slow 1200mV 0C Model Setup 'CLOCK_50'
-Slack : -5.989
-TNS   : -726.297
+Slack : -4.703
+TNS   : -334.632
+
+Type  : Slow 1200mV 0C Model Setup 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : -3.705
+TNS   : -27.550
 
 Type  : Slow 1200mV 0C Model Hold 'CLOCK_50'
-Slack : 0.339
+Slack : 0.191
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clock[0]'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : 0.525
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'CLOCK_50'
+Slack : -1.925
+TNS   : -88.546
+
+Type  : Slow 1200mV 0C Model Removal 'CLOCK_50'
+Slack : 1.397
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -3.000
-TNS   : -175.190
+TNS   : -166.195
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clock[0]'
+Slack : -1.285
+TNS   : -179.900
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : 0.418
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'clock[0]'
+Slack : -2.564
+TNS   : -321.772
 
 Type  : Fast 1200mV 0C Model Setup 'CLOCK_50'
-Slack : -2.757
-TNS   : -324.141
+Slack : -2.052
+TNS   : -121.829
+
+Type  : Fast 1200mV 0C Model Setup 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : -1.566
+TNS   : -10.943
 
 Type  : Fast 1200mV 0C Model Hold 'CLOCK_50'
-Slack : 0.174
+Slack : -0.026
+TNS   : -0.104
+
+Type  : Fast 1200mV 0C Model Hold 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : 0.155
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clock[0]'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'CLOCK_50'
+Slack : -0.619
+TNS   : -26.078
+
+Type  : Fast 1200mV 0C Model Removal 'CLOCK_50'
+Slack : 0.780
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -3.000
-TNS   : -147.814
+TNS   : -138.214
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clock[0]'
+Slack : -1.000
+TNS   : -140.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'LCD_TEST:u1|LUT_INDEX[1]'
+Slack : 0.419
+TNS   : 0.000
 
 ------------------------------------------------------------

@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Fri Nov 24 01:56:33 2017
+Analysis & Synthesis Status : Successful - Wed Nov 29 17:57:23 2017
 Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 Revision Name : Topeira
 Top-level Entity Name : Topeira
 Family : Cyclone IV E
-Total logic elements : 256
-    Total combinational functions : 255
-    Dedicated logic registers : 134
-Total registers : 134
-Total pins : 27
+Total logic elements : 2,640
+    Total combinational functions : 2,639
+    Dedicated logic registers : 267
+Total registers : 267
+Total pins : 82
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

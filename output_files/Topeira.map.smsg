@@ -1,4 +1,9 @@
-Warning (10268): Verilog HDL information at Topeira.v(61): always construct contains both blocking and non-blocking assignments File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 61
+Warning (10268): Verilog HDL information at Topeira.v(116): always construct contains both blocking and non-blocking assignments File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 116
 Info (10281): Verilog HDL Declaration information at Topeira.v(4): object "LEDG" differs only in case from object "ledg" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 4
-Info (10281): Verilog HDL Declaration information at Topeira.v(5): object "HEX0" differs only in case from object "hex0" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 5
-Info (10281): Verilog HDL Declaration information at Topeira.v(7): object "HEX1" differs only in case from object "hex1" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
+Info (10281): Verilog HDL Declaration information at Topeira.v(6): object "HEX1" differs only in case from object "hex1" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 6
+Info (10281): Verilog HDL Declaration information at Topeira.v(7): object "HEX2" differs only in case from object "hex2" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 7
+Info (10281): Verilog HDL Declaration information at Topeira.v(8): object "HEX3" differs only in case from object "hex3" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 8
+Info (10281): Verilog HDL Declaration information at Topeira.v(9): object "HEX4" differs only in case from object "hex4" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 9
+Info (10281): Verilog HDL Declaration information at Topeira.v(10): object "HEX5" differs only in case from object "hex5" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 10
+Info (10281): Verilog HDL Declaration information at Topeira.v(11): object "HEX6" differs only in case from object "hex6" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 11
+Info (10281): Verilog HDL Declaration information at Topeira.v(12): object "HEX7" differs only in case from object "hex7" in the same scope File: /home/brunoc/PROJETO_CL2/Topeira.v Line: 12
